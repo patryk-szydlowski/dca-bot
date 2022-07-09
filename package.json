@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/patryk-szydlowski/dca-bot/issues"
   },
-  "type": "module",
+  "type": "commonjs",
   "sideEffects": false,
   "engines": {
     "node": "18",
@@ -27,7 +27,7 @@
     "check:eslint": "eslint . --cache --max-warnings 0",
     "check:prettier": "prettier . --check",
     "check:typescript": "tsc --noEmit",
-    "dev": "node --experimental-specifier-resolution=node --loader ts-node/esm src/main.ts"
+    "dev": "ts-node src/main.ts"
   },
   "dependencies": {
     "dotenv": "16.0.1",
@@ -35,7 +35,7 @@
     "xapi-node": "2.5.5"
   },
   "devDependencies": {
-    "@tsconfig/node18-strictest-esm": "1.0.0",
+    "@tsconfig/node18": "1.0.0",
     "eslint": "8.19.0",
     "eslint-config-canonical": "35.0.1",
     "eslint-plugin-simple-import-sort": "7.0.0",

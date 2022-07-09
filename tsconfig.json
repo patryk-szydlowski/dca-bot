@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowUmdGlobalAccess": false,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
@@ -26,5 +27,5 @@
     "strictPropertyInitialization": true,
     "useUnknownInCatchVariables": true
   },
-  "extends": "@tsconfig/node18-strictest-esm/tsconfig.json"
+  "extends": "@tsconfig/node18/tsconfig.json"
 }
