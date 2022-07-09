@@ -17,6 +17,8 @@
         "arrow-body-style": ["error", "as-needed"],
         "canonical/destructuring-property-newline": "off",
         "canonical/import-specifier-newline": "off",
+        "consistent-return": "off",
+        "default-case": "off",
         "import/extensions": "off",
         "import/order": "off",
         "simple-import-sort/exports": "error",
