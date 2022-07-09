@@ -5,6 +5,7 @@ import {
   type AccountBalance,
   type BuyOrderOptions,
   type MarketBuyOrderOptions,
+  type TickerSymbol,
   type TradingService,
   BuyOrderType,
 } from "../../trading-service";
@@ -49,10 +50,25 @@ export class XTBTradingService implements TradingService {
       });
     });
 
-    const timeoutPromise = timeout<AccountBalance>(this.options.operationTimeoutMs);
+    try {
+      return await timeout(balancePromise, this.options.operationTimeoutMs);
+    } finally {
+      await this.tradingClient.Stream.unSubscribe.getBalance();
+    }
+  }
+
+  public async getTickerPrice(tickerSymbol: TickerSymbol): Promise<number> {
+    await this.tradingClient.Stream.subscribe.getTickPrices(tickerSymbol);
+
+    const tickerPricePromise = new Promise<number>((resolve) => {
+      const listener = this.tradingClient.Stream.listen.getTickPrices((price) => {
+        listener.stopListen();
+        resolve(price.ask);
+      });
+    });
 
     try {
-      return await Promise.race([balancePromise, timeoutPromise]);
+      return await timeout(tickerPricePromise, this.options.operationTimeoutMs);
     } finally {
       await this.tradingClient.Stream.unSubscribe.getBalance();
     }

@@ -20,5 +20,6 @@ export type BuyOrderOptions = MarketBuyOrderOptions;
 
 export type TradingService = {
   getAccountBalance: () => Promise<AccountBalance>;
+  getTickerPrice: (tickerSymbol: TickerSymbol) => Promise<number>;
   placeBuyOrder: (options: BuyOrderOptions) => Promise<void>;
 };
