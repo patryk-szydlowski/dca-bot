@@ -1,0 +1,75 @@
+{
+  "overrides": [
+    {
+      "extends": [
+        "canonical",
+        "canonical/node",
+        "canonical/typescript",
+        "canonical/module",
+        "canonical/prettier"
+      ],
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["simple-import-sort"],
+      "rules": {
+        "arrow-body-style": ["error", "as-needed"],
+        "canonical/destructuring-property-newline": "off",
+        "canonical/import-specifier-newline": "off",
+        "import/extensions": "off",
+        "import/order": "off",
+        "simple-import-sort/exports": "error",
+        "simple-import-sort/imports": "error"
+      }
+    },
+    {
+      "extends": ["canonical/jest"],
+      "files": ["*.test.ts", "*.test.tsx"]
+    },
+    {
+      "extends": ["canonical/yaml"],
+      "files": ["*.yml", "*.yaml"]
+    },
+    {
+      "extends": ["canonical/json"],
+      "files": ["*.json"],
+      "rules": {
+        "jsonc/array-bracket-newline": ["error", "consistent"],
+        "jsonc/array-element-newline": ["error", "consistent"],
+        "jsonc/object-curly-spacing": ["error", "always"]
+      }
+    },
+    {
+      "files": ["package.json"],
+      "rules": {
+        "jsonc/sort-keys": [
+          "error",
+          {
+            "order": [
+              "name",
+              "description",
+              "version",
+              "private",
+              "author",
+              "repository",
+              "readme",
+              "bugs",
+              "type",
+              "sideEffects",
+              "engines",
+              "scripts",
+              "dependencies",
+              "devDependencies"
+            ],
+            "pathPattern": "^$"
+          },
+          {
+            "order": { "type": "asc" },
+            "pathPattern": ".*"
+          }
+        ]
+      }
+    }
+  ]
+}

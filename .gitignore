@@ -1,0 +1,13 @@
+# ide
+/.vscode
+/.idea
+/*.iml
+
+# generic generated outputs
+/node_modules
+/.eslintcache
+
+# solid generated outputs
+/.solid
+/dist
+/functions/\[\[path\]\].js

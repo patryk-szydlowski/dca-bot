@@ -1,0 +1,41 @@
+{
+  "name": "dca-bot",
+  "description": "Bot for dollar cost averaging",
+  "version": "0.0.0-development",
+  "private": true,
+  "author": {
+    "email": "me@patrykszydlowski.com",
+    "name": "Patryk Szydłowski",
+    "url": "https://patrykszydlowski.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patryk-szydlowski/dca-bot.git"
+  },
+  "readme": "https://github.com/patryk-szydlowski/dca-bot#readme",
+  "bugs": {
+    "url": "https://github.com/patryk-szydlowski/dca-bot/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": "18",
+    "npm": "8"
+  },
+  "scripts": {
+    "check": "npm-run-all --parallel --print-label check:*",
+    "check:eslint": "eslint . --cache --max-warnings 0",
+    "check:prettier": "prettier . --check",
+    "check:typescript": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tsconfig/node18-strictest-esm": "1.0.0",
+    "eslint": "8.19.0",
+    "eslint-config-canonical": "35.0.1",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.7.1",
+    "typescript": "4.7.4"
+  }
+}
