@@ -1,5 +1,6 @@
 export enum TickerSymbol {
   BITCOIN = "BITCOIN",
+  VWRA_UK = "VWRA.UK",
 }
 
 export enum BuyOrderType {

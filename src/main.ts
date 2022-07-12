@@ -6,18 +6,35 @@ import { runAsyncTask } from "./utils/async";
 const program = async () => {
   const logger = new SystemLogger();
   const tradingService = await createTradingService({ provider: TradingProvider.XTB });
+  const symbol = TickerSymbol.VWRA_UK;
 
-  await logger.info("Getting BTC price...");
-  const btcPrice = await tradingService.getTickerPrice(TickerSymbol.BITCOIN);
-  await logger.info(`BTC price is: ${btcPrice}`);
+  await logger.info("Initializing strategy to invest everything into VWRA.UK...");
 
-  await logger.info("Placing order on BTC...");
+  await logger.info("Getting account available funds...");
+
+  const { availableFunds } = await tradingService.getAccountBalance();
+
+  await logger.info(`Current available funds are ${availableFunds}`);
+
+  await logger.info("Getting VWRA.UK price...");
+
+  const tikcerPrice = await tradingService.getTickerPrice(symbol);
+
+  await logger.info(`Current VWRA.UK price is roughly ${tikcerPrice}`);
+
+  const purchaseVolume = Math.floor(availableFunds / tikcerPrice);
+
+  await logger.info(
+    `Attempting to purchase ${purchaseVolume} VWRA.UK with rough cost of ${availableFunds}`
+  );
+
   await tradingService.placeBuyOrder({
-    symbol: TickerSymbol.BITCOIN,
+    symbol,
     type: BuyOrderType.MARKET,
-    volume: 0.01,
+    volume: purchaseVolume,
   });
-  await logger.info("BTC order placed!");
+
+  await logger.info("Market buy order was successfully placed");
 };
 
 runAsyncTask(program);
